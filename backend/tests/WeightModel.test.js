@@ -32,10 +32,16 @@ test("get by user id test",()=>{
     const weights_1 = WeightModel.getByUserId("123",file);
     expect(weights_1[0].userId).toBe(weight.userId); 
     expect(weights_1.length).toBeGreaterThan(0); //以上
+    // ないuseridで取るとから配列が帰ってくる
+    const weight_2 = WeightModel.getByUserId("1234",file);
+    // expect(weight_2.length).toBeGreaterThan(1); 通らない
+    expect(weight_2.length).toBeLessThan(1);
 
 })
 test("get by id test",()=>{
     const weight_1 = WeightModel.createWeight("123",67,file=testDataFile);
     const weight_2 = WeightModel.getById(weight_1.id,file=testDataFile);
     expect(weight_1.id).toBe(weight_2.id);
+    const weight_3 = WeightModel.getById("123",file=testDataFile);
+    expect(weight_3).toBeUndefined(); //Noneではなく、undefinedとする。
 })
