@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const UserModel = require("../models/PlanModel");
+const PlanModel = require("../models/PlanModel");
 const testDataFile = path.join(__dirname,"../data/plan.test.json");
 
 
@@ -15,4 +16,26 @@ afterAll(()=>{
     fs.unlinkSync(testDataFile); 
 });
 
-test("getall,create,save test")
+// getall,save,createのテスト
+test("get all,create,save test",()=>{
+    const plan = PlanModel.createPlan("123","おはようございます。",file=testDataFile);
+    expect(plan.userId).toBe("123");
+    expect(plan.content).toBe("おはようございます。");
+})
+
+// get useridのテスト
+test("get by user_id test",()=>{
+    const plan_1 = PlanModel.createPlan("123","おはようございます。",file = testDataFile);
+    const plants_2 = PlanModel.getByUserId("123",file=testDataFile);
+    expect(plants_2.length).toBeGreaterThan(0);
+    expect(plan_1.id).toBe(plants_2[0].id);
+})
+
+// get idのテスト
+
+test("get by id test",()=>{
+    const plan_1= PlanModel.createPlan("123","おはようございます。",file=testDataFile);
+    const plan_2 = PlanModel.getById(plan_1.id,file=testDataFile);
+    expect(plan_1.id).toBe(plan_2.id);
+    expect(plan_1.content).toBe(plan_2.content);
+})
