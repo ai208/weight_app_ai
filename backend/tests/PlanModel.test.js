@@ -21,6 +21,10 @@ test("get all,create,save test",()=>{
     const plan = PlanModel.createPlan("123","おはようございます。",file=testDataFile);
     expect(plan.userId).toBe("123");
     expect(plan.content).toBe("おはようございます。");
+    // jsonファイルの確認もする必要がある。
+    const usersInfile = JSON.parse(fs.readFileSync(testDataFile,"utf-8"));
+    expect(usersInfile.length).toBe(1);
+    expect(usersInfile[0].userId).toBe("123");
 })
 
 // get useridのテスト

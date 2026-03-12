@@ -4,7 +4,6 @@
 const fs = require("fs");//ファイル操作
 const path = require("path");
 const {v4 :uuidv4} = require("uuid");
-const UserModel = require("./UserModel");
 
 const dataFile = path.join(__dirname,"../data/plans.json");
 
