@@ -29,3 +29,12 @@ class WeightController{
 }
 
 module.exports = WeightController;
+
+// url の確認用
+exports.createWeight = (req, res) => {
+  // 仮で body をそのまま返す
+  res.json({
+    message: "createWeight OK",
+    data: req.body
+  });
+};

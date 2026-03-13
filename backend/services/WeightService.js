@@ -1,7 +1,7 @@
 // controller -> service -> model
 const path = require("path");
 const WeightModel = require("../models/WeightModel");
-// serviceがファイルを決める
+// serviceがファイルを決める test用にしている。
 class WeightService{
     // 新規作成
     static createWeight(userId,weight){

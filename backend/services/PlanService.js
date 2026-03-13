@@ -2,7 +2,7 @@
 const path = require("path");
 
 const PlanModel = require("../models/PlanModel");
-// ここに、AIserviceを追加する。
+// ここに、AIserviceを追加する。 test用にしている。
 // const AIservicce =
 
 class PlanService{
