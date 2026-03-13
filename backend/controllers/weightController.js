@@ -5,3 +5,27 @@
 const express = require("express");
 const router = express.Router();
 const WeightService = require("../services/WeightService");
+
+class WeightController{
+    //登録用
+    static createWeight(req,res){
+        // const {userId,weight} = req.params; params はurlから切り取って作る。
+        const {userId,weight} = req.body;
+
+        const result = WeightService.createWeight(userId,weight);
+        res.json(result);
+    }
+    // 最近の値を取ってくる
+    static getLatestWeight(req,res){
+        const userId = req.params.userId;
+        const weight = WeightService.getLatestWeight(userId);
+        //ない時
+        if(!weight){
+            return res.json({message:"no data"});
+        }
+        res.json(weight);
+
+    }
+}
+
+module.exports = WeightController;
